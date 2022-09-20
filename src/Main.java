@@ -110,8 +110,7 @@ public class Main {
 
     public static void changePlayer(int player)
     {
-        if (player == 0) {player = 1;}
-        else {player = 0;}
+        player = (player == 1 ? 2 : 1);
     }
     public static boolean haveWinner(int[] woods)
     {
