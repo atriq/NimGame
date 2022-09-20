@@ -8,7 +8,7 @@ public class Main {
 
         do {
             out(heap);
-            makeMove(player);
+            displayPlayer(player);
             makeTurn(heap);
             player = changePlayer(player);
         } while (!haveWinner(heap));
@@ -29,7 +29,6 @@ public class Main {
             for (int j = 0; j < ((2 * heap.length) - heap[i]) / 2; j++) {
                 System.out.print(" ");
             }
-
             for (int j = 0; j < heap[i]; j++) {
                 System.out.print("|");
             }
@@ -37,23 +36,23 @@ public class Main {
         }
     }
 
-    public static void makeMove(int player) {
+    public static void displayPlayer(int player) {
         System.out.println();
         System.out.println();
         System.out.println("It is Player " + changePlayer(player) + "'s turn!");
     }
 
-    public static boolean isInputOk(int[] woods, int heap, int count) {
-        int countHeap = woods.length;
+    public static boolean isInputOk(int[] matches, int heap, int count) {
+        int countHeap = matches.length;
 
         if (heap > countHeap || heap < 0) return false;
         if (count > 3 || count < 1) return false;
-        if (woods[heap - 1] < count) return false;
+        if (matches[heap - 1] < count) return false;
 
         return true;
     }
 
-    public static void makeTurn(int[] woods) {
+    public static void makeTurn(int[] matches) {
         int heap = 0;
         int count = 0;
         boolean userInputIsOk = false;
@@ -82,7 +81,7 @@ public class Main {
                 }
             } while (!inputOk);
 
-            System.out.println("How many sticks do you want to remove?");
+            System.out.println("How many matches do you want to remove?");
 
             inputOk = false;
             do
@@ -96,17 +95,17 @@ public class Main {
                 catch (Exception ex)
                 {
                     System.out.println("Invalid Input! Only enter numbers!");
-                    System.out.println("How many sticks do you want to remove? ");
+                    System.out.println("How many matches do you want to remove?");
                     ex.printStackTrace();
                     inputOk = false;
                 }
             } while (!inputOk);
 
-            userInputIsOk = isInputOk(woods, heap, count);
+            userInputIsOk = isInputOk(matches, heap, count);
 
             if (userInputIsOk)
             {
-                woods[heap - 1] -= count;
+                matches[heap - 1] -= count;
             }
             else
             {
@@ -114,10 +113,10 @@ public class Main {
             }
         } while (!userInputIsOk);
     }
-    public static boolean haveWinner(int[] woods)
+    public static boolean haveWinner(int[] matches)
     {
-        for (int i = 0; i < woods.length; i++) {
-            if (woods[i] > 0) {return false;}
+        for (int i = 0; i < matches.length; i++) {
+            if (matches[i] > 0) {return false;}
         }return true;
     }
     static void showWinner(int player)
