@@ -5,17 +5,25 @@ public class Main {
         int[] heap = {1, 3, 5, 7};
         int player = 0;
 
-        getPlayer();
 
         do {
             out(heap);
-            turn(player);
+            makeMove(player);
             makeTurn(heap);
+            player = changePlayer(player);
         } while (!haveWinner(heap));
 
         showWinner(player);
     }
 
+    public static int changePlayer(int player){
+        int newPlayer = 1;
+
+        if(player == 1){
+            newPlayer = 2;
+        }
+        return newPlayer;
+    }
     public static void out(int[] heap) {
         for (int i = 0; i < heap.length; i++) {
             for (int j = 0; j < ((2 * heap.length) - heap[i]) / 2; j++) {
@@ -29,10 +37,10 @@ public class Main {
         }
     }
 
-    public static void turn(int player) {
+    public static void makeMove(int player) {
         System.out.println();
         System.out.println();
-        System.out.println("It is " + player + " turn!");
+        System.out.println("It is Player " + changePlayer(player) + "'s turn!");
     }
 
     public static boolean isInputOk(int[] woods, int heap, int count) {
@@ -52,7 +60,7 @@ public class Main {
 
         do
         {
-            System.out.println("Streichhoelzer von welchem Haufen entfernen? ");
+            System.out.println("Remove matches from what pile?");
 
             boolean inputOk = false;
 
@@ -67,14 +75,14 @@ public class Main {
                 }
                 catch(Exception ex)
                 {
-                    System.out.println("Ungueltige Eingabe. Bitte nur Zahlen eingeben!");
-                    System.out.println("Streichhoelzer von welchem Haufen entfernen? ");
+                    System.out.println("Invalid Input! Only enter numbers!");
+                    System.out.println("Remove matches from what pile?");
                     ex.printStackTrace();
                     inputOk = false;
                 }
             } while (!inputOk);
 
-            System.out.println("Wieviele Hoelzer entfernen? ");
+            System.out.println("How many sticks do you want to remove?");
 
             inputOk = false;
             do
@@ -87,8 +95,8 @@ public class Main {
                 }
                 catch (Exception ex)
                 {
-                    System.out.println("Ungueltige Eingabe. Bitte nur Zahen eingeben!");
-                    System.out.println("Wieviele Hoelzer entfernen? ");
+                    System.out.println("Invalid Input! Only enter numbers!");
+                    System.out.println("How many sticks do you want to remove? ");
                     ex.printStackTrace();
                     inputOk = false;
                 }
@@ -102,22 +110,12 @@ public class Main {
             }
             else
             {
-                System.out.println("Ungueltige Eingabe!");
+                System.out.println("Invalid Input!");
             }
         } while (!userInputIsOk);
     }
-
-
-
-    public static String getPlayer()
-    {
-        Scanner player = new Scanner(System.in);
-        System.out.println("Do you want to play first? Yes(1). No (0): ");
-        return player.nextLine();
-    }
     public static boolean haveWinner(int[] woods)
     {
-
         for (int i = 0; i < woods.length; i++) {
             if (woods[i] > 0) {return false;}
         }return true;
@@ -128,10 +126,10 @@ public class Main {
         switch (player)
         {
             case 1:
-                System.out.println("Spieler 1 hat gewonnen!!!");
+                System.out.println("Player 1 has won!!!");
                 break;
             default:
-                System.out.println("Spieler 2 hat gewonnen!!!");
+                System.out.println("Player 2 has won!!!");
                 break;
         } System.out.println();
     }
