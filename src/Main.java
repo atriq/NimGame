@@ -5,11 +5,12 @@ public class Main {
         int[] heap = {1, 3, 5, 7};
         int player = 0;
 
+        getPlayer();
+
         do {
             out(heap);
             turn(player);
             makeTurn(heap);
-            changePlayer(player);
         } while (!haveWinner(heap));
 
         showWinner(player);
@@ -108,9 +109,11 @@ public class Main {
 
 
 
-    public static void changePlayer(int player)
+    public static String getPlayer()
     {
-        player = (player == 1 ? 2 : 1);
+        Scanner player = new Scanner(System.in);
+        System.out.println("Do you want to play first? Yes(1). No (0): ");
+        return player.nextLine();
     }
     public static boolean haveWinner(int[] woods)
     {
