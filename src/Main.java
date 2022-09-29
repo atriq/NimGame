@@ -86,6 +86,7 @@ public class Main {
         {
             System.out.println(userInformation);
             input = in.nextLine();
+            inputOk = true;
 
             try {
                 value = Integer.parseInt(input);
