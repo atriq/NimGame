@@ -59,47 +59,8 @@ public class Main {
 
         do
         {
-            System.out.println("Remove matches from what pile?");
-
-            boolean inputOk = false;
-
-            do
-            {
-                Scanner in = new Scanner(System.in);
-                String input = in.nextLine();
-
-                try {
-                    heap = Integer.parseInt(input);
-                    inputOk = true;
-                }
-                catch(Exception ex)
-                {
-                    System.out.println("Invalid Input! Only enter numbers!");
-                    System.out.println("Remove matches from what pile?");
-                    ex.printStackTrace();
-                    inputOk = false;
-                }
-            } while (!inputOk);
-
-            System.out.println("How many matches do you want to remove?");
-
-            inputOk = false;
-            do
-            {
-                Scanner in = new Scanner(System.in);
-                String input = in.nextLine();
-                try {
-                    count = Integer.parseInt(input);
-                    inputOk = true;
-                }
-                catch (Exception ex)
-                {
-                    System.out.println("Invalid Input! Only enter numbers!");
-                    System.out.println("How many matches do you want to remove?");
-                    ex.printStackTrace();
-                    inputOk = false;
-                }
-            } while (!inputOk);
+            heap = getInputFromUser("Remove matches from what pile? ");
+            count = getInputFromUser("How many matches do you want to remove? ");
 
             userInputIsOk = isInputOk(matches, heap, count);
 
@@ -112,6 +73,33 @@ public class Main {
                 System.out.println("Invalid Input!");
             }
         } while (!userInputIsOk);
+    }
+
+    public static int getInputFromUser(String userInformation) {
+        boolean inputOk = true;
+        int value = 0;
+
+        Scanner in = new Scanner(System.in);
+        String input;
+
+        do
+        {
+            System.out.println(userInformation);
+            input = in.nextLine();
+
+            try {
+                value = Integer.parseInt(input);
+            }
+            catch(Exception ex)
+            {
+                System.out.println("Invalid Input! Only enter numbers!");
+
+                //ex.printStackTrace();
+                inputOk = false;
+            }
+        } while (!inputOk);
+
+        return value;
     }
     public static boolean haveWinner(int[] matches)
     {
